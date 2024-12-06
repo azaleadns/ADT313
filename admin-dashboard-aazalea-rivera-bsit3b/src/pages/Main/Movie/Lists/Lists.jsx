@@ -2,90 +2,93 @@ import { useNavigate } from 'react-router-dom';
 import './Lists.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+
 const Lists = () => {
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
-  const [lists, setLists] = useState([]);
+  const [movies, setMovies] = useState([]);
 
-  const getMovies = () => {
-    //get the movies from the api or database
-    axios.get('/movies').then((response) => {
-      setLists(response.data);
-    });
+  const fetchMovies = async () => {
+    try {
+      const response = await axios.get('/movies');
+      setMovies(response.data);
+    } catch (error) {
+      console.error('Error fetching movies:', error);
+    }
   };
+
   useEffect(() => {
-    getMovies();
+    fetchMovies();
   }, []);
 
-  const handleDelete = (id) => {
-    const isConfirm = window.confirm(
-      'Are you sure that you want to delete this data?'
+  const handleRemove = async (id) => {
+    const confirmDeletion = window.confirm(
+      'Are you sure you want to remove this movie?'
     );
-    if (isConfirm) {
-      axios
-        .delete(`/movies/${id}`, {
+    if (confirmDeletion) {
+      try {
+        await axios.delete(`/movies/${id}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
-        })
-        .then(() => {
-          //update list by modifying the movie list array
-          const tempLists = [...lists];
-          const index = lists.findIndex((movie) => movie.id === id);
-          if (index !== undefined || index !== -1) {
-            tempLists.splice(index, 1);
-            setLists(tempLists);
-          }
-
-          //update list by requesting again to api
-          // getMovies();
         });
+        // Update state to remove the deleted movie
+        setMovies((prevMovies) => prevMovies.filter((movie) => movie.id !== id));
+      } catch (error) {
+        console.error('Error removing movie:', error);
+      }
     }
   };
 
   return (
-    <div className='lists-container'>
-      <div className='create-container'>
+    <div className="movie-list-container">
+      <div className="header">
+        <h1>Your Movie Collection</h1>
         <button
-          type='button'
-          onClick={() => {
-            navigate('/main/movies/form');
-          }}
+          className="btn-add-movie"
+          onClick={() => navigate('/main/movies/form')}
         >
-          Create new
+          + Add New Movie
         </button>
       </div>
-      <div className='table-container'>
-        <table className='movie-lists'>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {lists.map((movie) => (
+      <div className="movie-table-container">
+        {movies.length > 0 ? (
+          <table className="movie-table">
+            <thead>
               <tr>
-                <td>{movie.id}</td>
-                <td>{movie.title}</td>
-                <td>
-                  <button
-                    type='button'
-                    onClick={() => {
-                      navigate('/main/movies/form/' + movie.id);
-                    }}
-                  >
-                    Edit
-                  </button>
-                  <button type='button' onClick={() => handleDelete(movie.id)}>
-                    Delete
-                  </button>
-                </td>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {movies.map((movie) => (
+                <tr key={movie.id}>
+                  <td>{movie.id}</td>
+                  <td>{movie.title}</td>
+                  <td>
+                    <button
+                      className="btn-edit-movie"
+                      onClick={() => navigate('/main/movies/form/' + movie.id)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn-remove-movie"
+                      onClick={() => handleRemove(movie.id)}
+                    >
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div className="no-movies-message">
+            No movies found. Add your first movie!
+          </div>
+        )}
       </div>
     </div>
   );
