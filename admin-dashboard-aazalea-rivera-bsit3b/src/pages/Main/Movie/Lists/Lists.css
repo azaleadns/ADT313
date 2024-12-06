@@ -1,17 +1,126 @@
-.lists-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.create-container {
-  align-self: flex-end;
-  margin: 1rem 0;
-}
-.table-container,
-.movie-lists {
-  width: 100%;
+/* Container for the movie list page */
+.movie-list-container {
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  background-color: #f4f7fc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.table-container {
+/* Header with title and button */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 2rem;
+  color: #333;
+  margin: 0;
+}
+
+.btn-add-movie {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-add-movie:hover {
+  background-color: #388e3c;
+}
+
+/* Movie table container */
+.movie-table-container {
+  overflow-x: auto;
+}
+
+.movie-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.movie-table th,
+.movie-table td {
+  padding: 12px 20px;
+  text-align: left;
+}
+
+.movie-table th {
+  background-color: #4caf50;
+  color: white;
+}
+
+.movie-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.movie-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.movie-table td button {
+  margin-right: 10px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Edit button */
+.btn-edit-movie {
+  background-color: #ff9800;
+  color: white;
+}
+
+.btn-edit-movie:hover {
+  background-color: #fb8c00;
+}
+
+/* Remove button */
+.btn-remove-movie {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-remove-movie:hover {
+  background-color: #e53935;
+}
+
+/* No movies message */
+.no-movies-message {
   text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .movie-table td,
+  .movie-table th {
+    padding: 8px;
+  }
+
+  .btn-add-movie {
+    font-size: 0.9rem;
+  }
+
+  .movie-table {
+    font-size: 0.9rem;
+  }
 }
