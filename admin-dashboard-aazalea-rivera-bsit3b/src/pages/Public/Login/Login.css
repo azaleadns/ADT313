@@ -1,48 +1,115 @@
+/* Main Container for Form */
 .main-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100vh; /* Set height to 100vh so the form stays centered */
+  background-color: #f4f7fc;
+  font-family: 'Arial', sans-serif;
 }
 
+/* Form Container */
 .form-container {
-  padding: 4rem 2rem;
+  padding: 5rem 3rem; /* Adjust padding to make it spacious */
+  width: 70%; /* Set width to 70% for better visibility */
+  max-width: 1200px; /* Max width to prevent it from getting too wide */
   border: 1px solid #ccc;
-  border-radius: 0.5rem;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+/* Form Group */
 .form-container > div {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
+/* Form Group Style */
 .form-group {
   display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .form-group label {
-  width: 70px;
-  margin-right: 8px;
-  text-align: left;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 6px;
 }
-.login.errors {
-  margin-bottom: 1rem;
+
+.form-group input {
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  font-size: 1.1rem; /* Increase font size for better readability */
 }
+
+/* Error Message */
 .errors {
   color: red;
-  font-size: 12px;
+  font-size: 0.875rem;
 }
+
+/* Submit Button Container */
 .submit-container {
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.submit-container button {
+  background-color: #2e7d32;
+  color: white;
+  padding: 14px 28px; /* Larger padding */
+  font-size: 1.1rem; /* Larger font size */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.submit-container button:hover {
+  background-color: #388e3c;
+}
+
+/* Show Password Button */
+.show-password {
   margin-top: 12px;
   text-align: center;
+  cursor: pointer;
+  color: #007bff;
 }
+
+/* Register Container */
 .register-container {
   text-align: center;
+  margin-top: 16px;
 }
-.show-password {
-  margin-bottom: 1rem;
-  cursor: pointer;
+
+.register-container a {
+  color: #007bff;
+  text-decoration: none;
 }
+
+.register-container a:hover {
+  text-decoration: underline;
+}
+
+
+  .form-group input {
+    padding: 12px; /* Adjust padding for smaller devices */
+  }
+
+  .submit-container button {
+    font-size: 1rem; /* Adjust button size */
+    padding: 12px 24px;
+  }
+
