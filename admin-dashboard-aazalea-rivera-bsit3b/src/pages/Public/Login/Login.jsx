@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDebounce } from '../../../utils/hooks/useDebounce';
 import axios from 'axios';
 
+
+
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -57,9 +59,10 @@ function Login() {
   return (
     <div className='Login'>
       <div className='main-container'>
+      <h2 className='login-title'>F I L M S C A P E</h2>
         <form>
           <div className='form-container'>
-            <h3>Login</h3>
+            <h3>LOGIN</h3>
 
             {error && <span className='login errors'>{error}</span>}
             
