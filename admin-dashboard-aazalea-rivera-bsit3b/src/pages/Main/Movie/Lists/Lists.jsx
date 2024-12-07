@@ -32,7 +32,7 @@ const Lists = () => {
             Authorization: `Bearer ${accessToken}`,
           },
         });
-        // Update state to remove the deleted movie
+        
         setMovies((prevMovies) => prevMovies.filter((movie) => movie.id !== id));
       } catch (error) {
         console.error('Error removing movie:', error);
