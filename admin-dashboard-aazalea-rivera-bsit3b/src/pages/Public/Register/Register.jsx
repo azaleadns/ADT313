@@ -85,10 +85,10 @@ function Register() {
   const checkExistingEmail = async (email) => {
     try {
       const response = await axios.get(`/admin/check-email?email=${email}`);
-      return response.data.exists; // Assuming your API returns { exists: true/false }
+      return response.data.exists; 
     } catch (error) {
       console.error('Error checking email:', error);
-      return false; // Default to not existing if there's an error
+      return false; 
     }
   };
 
@@ -96,9 +96,9 @@ function Register() {
     if (!validateFields()) return;
 
     setLoadingStatus('loading');
-    setErrorText(''); // Clear any previous error messages
+    setErrorText(''); 
 
-    // Check if email already exists
+  
     const emailExists = await checkExistingEmail(email);
     if (emailExists) {
       setErrorText('Email already exists. Please log in.');
@@ -128,10 +128,11 @@ function Register() {
   return (
     <div className="Register">
       <div className="main-container">
-        <h3>Register</h3>
+      <h2 className='login-title'>F I L M S C A P E</h2>
         {errorText && <div className="error-message">{errorText}</div>}
         <form>
           <div className="form-container">
+          <h3>REGISTER</h3>
             <div className="form-group">
               <label>Email:</label>
               <input
