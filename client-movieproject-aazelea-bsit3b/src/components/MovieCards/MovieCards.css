@@ -1,0 +1,44 @@
+
+.card {
+  max-width: 100%;
+  width: 280px;
+  height: auto; 
+  border: 10px solid #141313; 
+  background-color: #0a0707;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out; 
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+}
+
+.card img {
+  width: 100%; 
+  max-width: 150px; 
+  object-fit: contain; 
+  margin: 10px auto; 
+}
+
+.card .card-content {
+  padding: 10px;
+  text-align: center;
+}
+
+.card:hover {
+  border: 10px solid #3f3f3f; 
+  background-color: #3f3f3f;
+  cursor: pointer; 
+}
+
+.card .card-content .movie-title {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.card .card-content .movie-release-date {
+  color: #bbb;
+  font-size: 0.9rem;
+}
+
